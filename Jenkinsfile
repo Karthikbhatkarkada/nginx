@@ -9,7 +9,7 @@ pipeline {
     stages {
         stage('Clone Nginx Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/Karthikbhatkarkada/nginx'
+                git branch: 'main', url: 'https://github.com/Karthikbhatkarkada/nginx.git'
             }
         }
 
