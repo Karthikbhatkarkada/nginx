@@ -13,22 +13,6 @@ pipeline {
             }
         }
 
-        stage('Build Nginx from Source') {
-            steps {
-                sh '''
-                    sudo apt-get update
-                    sudo apt-get install -y build-essential libpcre3 libpcre3-dev zlib1g zlib1g-dev libssl-dev
-                    
-                    ./configure --prefix=/usr/local/nginx --with-http_ssl_module
-                    make
-                    mkdir -p nginx-build/sbin nginx-build/conf
-                    
-                    cp objs/nginx nginx-build/sbin/
-                    cp conf/* nginx-build/conf/
-                '''
-            }
-        }
-
         stage('Packer Build Image in OCI') {
             steps {
                 sh '''

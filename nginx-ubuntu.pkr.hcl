@@ -13,19 +13,21 @@ source "oracle-oci" "ubuntu" {
 build {
   sources = ["source.oracle-oci.ubuntu"]
 
-  # Copy Jenkins-built Nginx files to VM
+  # Copy your Nginx repo into VM
   provisioner "file" {
-    source      = "nginx-build"  # Folder from Jenkins build
-    destination = "/tmp/nginx-build"
+    source      = "."   # Assuming Jenkins workspace contains your repo
+    destination = "/tmp/nginx-src"
   }
 
-  # Install runtime deps, place nginx in proper path, configure service
+  # Build and install Nginx in the VM
   provisioner "shell" {
     inline = [
       "sudo apt-get update",
-      "sudo apt-get install -y libpcre3 zlib1g libssl3",
-      "sudo mkdir -p /usr/local/nginx",
-      "sudo cp -r /tmp/nginx-build/* /usr/local/nginx/",
+      "sudo apt-get install -y gcc make",
+      "sudo make install",
+      "cd /tmp/nginx-src",
+      "auto/configure",
+      "make",
       "sudo ln -sf /usr/local/nginx/sbin/nginx /usr/bin/nginx",
       "sudo bash -c 'cat <<EOF > /etc/systemd/system/nginx.service
 [Unit]
