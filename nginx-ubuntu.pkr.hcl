@@ -29,19 +29,6 @@ build {
       "make",
       "sudo make install",    
       "sudo ln -sf /usr/local/nginx/sbin/nginx /usr/bin/nginx",
-      "sudo bash -c 'cat <<EOF > /etc/systemd/system/nginx.service
-[Unit]
-Description=Nginx Service
-After=network.target
-
-[Service]
-ExecStart=/usr/local/nginx/sbin/nginx -g \"daemon off;\"
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF'",
-      "sudo systemctl enable nginx"
     ]
   }
 }
