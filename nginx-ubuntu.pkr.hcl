@@ -24,10 +24,10 @@ build {
     inline = [
       "sudo apt-get update",
       "sudo apt-get install -y gcc make",
-      "sudo make install",
       "cd /tmp/nginx-src",
       "auto/configure",
       "make",
+      "sudo make install",    
       "sudo ln -sf /usr/local/nginx/sbin/nginx /usr/bin/nginx",
       "sudo bash -c 'cat <<EOF > /etc/systemd/system/nginx.service
 [Unit]
