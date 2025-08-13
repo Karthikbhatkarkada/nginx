@@ -2,7 +2,6 @@ variable "oci_config_file" {}
 variable "compartment_id" {}
 
 source "oracle-oci" "ubuntu" {
-  config_file_profile = "DEFAULT"
   config_file         = var.oci_config_file
   compartment_id      = var.compartment_id
   image_ocid          = "ocid1.image.oc1.ap-hyderabad-1.aaaaaaaafs7imfvcicboqisaisiz5bbpuzbg5gicwjwvyhnhsvdaowuc3w4q"
