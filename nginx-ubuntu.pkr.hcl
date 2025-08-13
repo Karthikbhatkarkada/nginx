@@ -38,3 +38,4 @@ build {
       "echo 'Nginx installed successfully!'"
     ]
   }
+}
